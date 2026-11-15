@@ -1,0 +1,62 @@
+# Build APK Sama Tani otomatis setiap ada push ke branch main.
+# Hasilnya:
+#   1. Artifact "SamaTani-apk" di halaman Actions, dan
+#   2. Rilis "latest" berisi SamaTani.apk yang bisa diunduh langsung dari HP.
+name: Build APK
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Build APK (release, sudah dioptimasi)
+        run: |
+          chmod +x gradlew
+          ./gradlew --no-daemon --stacktrace assembleRelease
+
+      - name: Siapkan file APK
+        run: cp app/build/outputs/apk/release/app-release.apk SamaTani.apk
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: SamaTani-apk
+          path: SamaTani.apk
+          retention-days: 30
+
+      - name: Terbitkan ke rilis "latest"
+        if: github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release delete latest --yes --cleanup-tag || true
+          gh release create latest SamaTani.apk \
+            --title "Sama Tani – build terbaru" \
+            --notes "APK otomatis dari commit ${GITHUB_SHA::7} (build #${GITHUB_RUN_NUMBER}). Unduh SamaTani.apk di HP Android, lalu izinkan 'Instal aplikasi tidak dikenal'." \
+            --target "$GITHUB_SHA" \
+            --prerelease

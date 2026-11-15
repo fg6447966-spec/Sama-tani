@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Ikon Sama Tani: tunas tumbuh di atas tanah. Area aman ikon adaptif = 66dp di tengah. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- tanah -->
+    <path
+        android:fillColor="#FFC94A"
+        android:pathData="M33,71 L75,71 Q75,78 68,78 L40,78 Q33,78 33,71 Z" />
+    <!-- batang -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M52.5,47 L55.5,47 L55.5,72 L52.5,72 Z" />
+    <!-- daun kiri -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,61 C45,61 36,55 34,43 C46,43 54,49 54,61 Z" />
+    <!-- daun kanan -->
+    <path
+        android:fillColor="#E8F5E9"
+        android:pathData="M54,53 C54,41 62,32 76,31 C76,44 67,53 54,53 Z" />
+</vector>
