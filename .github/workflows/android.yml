@@ -7,6 +7,8 @@ name: Build APK
 on:
   push:
     branches: [ main ]
+    # Perubahan yang hanya menyentuh website/dokumen tidak perlu build APK ulang
+    paths-ignore: [ 'web/**', '**.md', '.github/workflows/pages.yml' ]
   pull_request:
   workflow_dispatch:
 

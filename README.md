@@ -32,7 +32,9 @@ Di layar awal, ketuk **Demo Petani** atau **Demo Pembeli**. Data contoh sudah be
 
 ## Versi web
 
-Folder [`web/`](web/) berisi Sama Tani versi website: **satu file** `web/index.html` (HTML + CSS + JavaScript, tanpa library) yang bisa dibuka di browser laptop maupun HP.
+**Buka langsung: https://fg6447966-spec.github.io/Sama-tani/** — bisa dibuka siapa saja di laptop atau HP, tanpa akun.
+
+Folder [`web/`](web/) berisi Sama Tani versi website: **satu file** `web/index.html` (HTML + CSS + JavaScript, tanpa library). Setiap perubahan di `web/` otomatis diterbitkan ke GitHub Pages oleh `.github/workflows/pages.yml`.
 
 Fitur sama dengan aplikasi Android (pasar, keranjang & checkout, nego harga, permintaan rutin, status pesanan, harga pasar, ganti mode Petani ↔ Pembeli, tema terang/gelap), ditambah notifikasi langsung di halaman.
 
@@ -40,8 +42,8 @@ Dua mode penyimpanan:
 
 | Mode | Kapan | Data |
 | --- | --- | --- |
-| **Pasar bersama** | Dibuka sebagai artifact di claude.ai dalam keadaan masuk | Tersinkron untuk semua orang yang diundang (akses *Contributor*), langsung tanpa muat ulang |
-| **Mode demo** | Dibuka sebagai file biasa / di luar claude.ai | Tersimpan di browser itu saja (`localStorage`), lengkap dengan akun Demo Petani & Demo Pembeli |
+| **Pasar bersama** | Dibuka sebagai artifact di claude.ai dalam keadaan masuk | Tersinkron langsung untuk semua orang yang dibagikan. Yang punya akses edit bisa berjualan & memesan; yang hanya melihat bisa menjelajah pasar dan menghubungi petani lewat WhatsApp |
+| **Mode demo** | Situs GitHub Pages, file biasa, atau di luar claude.ai | Tersimpan di browser itu saja (`localStorage`), lengkap dengan akun Demo Petani & Demo Pembeli; pengunjung tidak saling melihat data |
 
 Coba lokal: klik dua kali `web/index.html`, atau jalankan `python3 -m http.server` di folder `web/` lalu buka `http://localhost:8000`.
 
