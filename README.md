@@ -1,8 +1,8 @@
 # 🌾 Sama Tani
 
-Aplikasi Android yang mempertemukan **petani / produsen** dengan **pembeli** seperti distributor, toko, rumah makan, dan hotel. Petani menjual hasil panen langsung, pembeli mendapat pasokan dari sumbernya, dan keduanya bisa nego harga dalam satu aplikasi.
+Aplikasi Android **dan website** yang mempertemukan **petani / produsen** dengan **pembeli** seperti distributor, toko, rumah makan, dan hotel. Petani menjual hasil panen langsung, pembeli mendapat pasokan dari sumbernya, dan keduanya bisa nego harga dalam satu aplikasi.
 
-> Versi awal (MVP). Data disimpan di HP, jadi aplikasi bisa langsung dicoba tanpa server.
+> Versi awal (MVP). Aplikasi Android menyimpan data di HP; versi web bisa memakai pasar bersama yang tersinkron (lihat [Versi web](#versi-web)).
 
 ## Fitur
 
@@ -29,6 +29,21 @@ Aplikasi Android yang mempertemukan **petani / produsen** dengan **pembeli** sep
 ## Coba cepat dengan akun demo
 
 Di layar awal, ketuk **Demo Petani** atau **Demo Pembeli**. Data contoh sudah berisi produk, pesanan, nego, dan permintaan. Mitra contoh (akun simulasi) akan **membalas otomatis** dalam beberapa detik, misalnya menerima pesanan, mengirim barang, atau menawar balik, sehingga seluruh alur bisa dicoba di satu HP. Data bisa dikembalikan lewat **Akun → Reset data demo**.
+
+## Versi web
+
+Folder [`web/`](web/) berisi Sama Tani versi website: **satu file** `web/index.html` (HTML + CSS + JavaScript, tanpa library) yang bisa dibuka di browser laptop maupun HP.
+
+Fitur sama dengan aplikasi Android (pasar, keranjang & checkout, nego harga, permintaan rutin, status pesanan, harga pasar, ganti mode Petani ↔ Pembeli, tema terang/gelap), ditambah notifikasi langsung di halaman.
+
+Dua mode penyimpanan:
+
+| Mode | Kapan | Data |
+| --- | --- | --- |
+| **Pasar bersama** | Dibuka sebagai artifact di claude.ai dalam keadaan masuk | Tersinkron untuk semua orang yang diundang (akses *Contributor*), langsung tanpa muat ulang |
+| **Mode demo** | Dibuka sebagai file biasa / di luar claude.ai | Tersimpan di browser itu saja (`localStorage`), lengkap dengan akun Demo Petani & Demo Pembeli |
+
+Coba lokal: klik dua kali `web/index.html`, atau jalankan `python3 -m http.server` di folder `web/` lalu buka `http://localhost:8000`.
 
 ## Cara memasang APK
 
@@ -85,7 +100,7 @@ Semua logika ada di `data/SamaTaniRepository.kt`. Untuk menyambungkan ke server,
 3. **Notifikasi** push untuk pesanan & nego baru
 4. Pembayaran (transfer / e-wallet / rekening bersama) dan perhitungan ongkir
 5. Peta lokasi kebun & radius pengiriman, rating petani/pembeli
-6. **Website** untuk distributor dengan backend yang sama
+6. ~~Website untuk distributor~~ ✔ sudah ada di `web/` — berikutnya: sambungkan Android ke backend yang sama
 
 ## Catatan keamanan
 
